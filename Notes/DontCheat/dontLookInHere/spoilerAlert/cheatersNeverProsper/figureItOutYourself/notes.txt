@@ -1,0 +1,13 @@
+1st Route: Buttons don't work
+    - check what is being passed to the update function
+
+2nd Route: Object can't be React child Error
+    - Function is a decoy. Check what is being passed in the JSX setState function
+
+3rd Route: 3 Part debugging. 
+    1. Error in console
+    2. JSX won't show up
+    3. code to blank input isn't working 
+        - must have top level element wrapping JSX 
+        - check router.js 
+        - input doesn't have value tied to state
