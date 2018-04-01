@@ -2,13 +2,15 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './components/Home/Home.js';
+import One from './components/One/One.js';
+import Two from './components/Two/Two.js';
 
 
 export default (
     <Switch>
         
-        <Route component={ Home } path='/' exact />
+        <Route component={ One } path='/1' exact />
+        <Route component={ Two } path='/2' exact />
 
     </Switch>
 )

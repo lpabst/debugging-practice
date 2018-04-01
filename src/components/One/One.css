@@ -1,0 +1,25 @@
+
+.one{
+    width: 100%;
+    position: relative;
+}
+
+.one_inner{
+    width: 300px;
+    height: 200px;
+    margin: 200px auto;
+}
+
+.total{
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button{
+    width: 90px;
+    margin-right: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
