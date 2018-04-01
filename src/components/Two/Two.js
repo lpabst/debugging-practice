@@ -7,15 +7,15 @@ class Two extends Component {
   constructor(props){
     super(props);
     this.state = {
-      total: 1
+      userInput: ''
     }
 
-    this.updateTotal = this.updateTotal.bind(this);
+    this.updateUserInput = this.updateUserInput.bind(this);
   }
 
-  updateTotal(num){
+  updateUserInput(val){
     this.setState({
-      total: this.state.total + num
+      userInput: val
     })
   }
 
@@ -23,11 +23,9 @@ class Two extends Component {
     return (
       <div className="two">
 
-        <div className='two_inner'>
-          <p className='total'>{this.state.total}</p>
-          <button onClick={(e) => this.updateTotal(e.target.value)}>+1</button>
-          <button onClick={(e) => this.updateTotal(e.target.value)}>+5</button>
-          <button onClick={(e) => this.updateTotal(e.target.value)}>-2</button>
+        <div className='inner'>
+          <input className='input' onChange={(e) => this.setState({userInput: e})} placeholder='enter something here' />
+          <p className='input'>Your input: {this.state.userInput}</p>
         </div>
 
       </div>

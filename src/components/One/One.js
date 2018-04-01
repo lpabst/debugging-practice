@@ -23,7 +23,7 @@ class One extends Component {
     return (
       <div className="one">
 
-        <div className='one_inner'>
+        <div className='inner'>
           <p className='total'>{this.state.total}</p>
           <button onClick={(e) => this.updateTotal(e.target.value)}>+1</button>
           <button onClick={(e) => this.updateTotal(e.target.value)}>+5</button>
