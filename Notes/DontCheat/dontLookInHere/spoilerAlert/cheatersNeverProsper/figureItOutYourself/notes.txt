@@ -11,3 +11,8 @@
         - must have top level element wrapping JSX 
         - check router.js 
         - input doesn't have value tied to state
+
+4th Route: hitting buttons on the onscreen keyboard doesn't do anything
+    - i'm passing the wrong prop to the List component
+
+
