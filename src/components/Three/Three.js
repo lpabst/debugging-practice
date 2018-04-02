@@ -24,16 +24,18 @@ class Three extends Component {
 
     render() {
         return (
-            <div className="controls">
-                <input onChange={(e) => this.setState({ input: e.target.value })} />
-                <button onClick={() => this.addItemToList()}>Add item</button>
-            </div>
-            <div className='data'>
-                    {
-                        this.state.list.map( (item, i) => {
-                            return <p>item</p>
-                        })
-                    }
+            <div>
+                <div className="controls">
+                    <input onChange={(e) => this.setState({ input: e.target.value })} />
+                    <button onClick={() => this.addItemToList()}>Add item</button>
+                </div>
+                <div className='data'>
+                        {
+                            this.state.list.map( (item, i) => {
+                                return <p>item</p>
+                            })
+                        }
+                </div>
             </div>
         );
     }

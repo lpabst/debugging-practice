@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import One from './components/One/One.js';
 import Two from './components/Two/Two.js';
 import Three from './components/Three/Three.js';
+import Four from './components/Four/Four.js';
 
 
 export default (
@@ -13,6 +14,7 @@ export default (
         <Route component={ One } path='/1' exact />
         <Route component={ Two } path='/2' exact />
         <Route component={ Three } path='/2' exact />
+        <Route component={ Four } path='/4' exact />
 
     </Switch>
 )
