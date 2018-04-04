@@ -23,11 +23,8 @@
 }
 
 .buttons{
-    width: 400px;
+    width: 625px;
     height: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
     margin: 0 auto;
 }
 
@@ -45,3 +42,16 @@
     user-select: none;
 }
 
+.buttonsRow{
+    width: 625px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 5px;
+    user-select: none;
+}
+
+.spacebar{
+    width: 300px;
+}
