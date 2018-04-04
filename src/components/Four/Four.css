@@ -42,6 +42,10 @@
     user-select: none;
 }
 
+.buttons p:active{
+    box-shadow: inset 1px 1px 1px black;
+}
+
 .buttonsRow{
     width: 625px;
     height: 40px;
