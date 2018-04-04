@@ -1,0 +1,45 @@
+
+.five{
+    width: 100%;
+    position: relative;
+}
+
+.threads{
+    width: 800px;
+    height: 500px;
+    overflow-y: scroll;
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 400px);
+    border: 1px solid blue;
+}
+
+.thread{
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid black;
+}
+
+.threadPlus{
+    width: 50px;
+    height: 50px;
+    line-height: 46px;
+    text-align: center;
+    font-size: 50px;
+    float: left;
+    cursor: pointer;
+    user-select: none;
+}
+
+.threadName{
+    height: 50px;
+    line-height: 46px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.message{
+    width: 100%;
+    height: 30px;
+    border: 1px solid black;
+}
