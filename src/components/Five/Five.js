@@ -23,12 +23,12 @@ class Five extends Component {
                     }
                 ]
             }],
-            showNewThreadModal: false,
+            showNewThreadArea: false,
             newThreadName: '',
             commentInput: '',
         }
 
-        this.openNewThreadModal = this.openNewThreadModal.bind(this);
+        this.openNewThreadArea = this.openNewThreadArea.bind(this);
         this.createNewThread = this.createNewThread.bind(this);
         this.toggleOpenThread = this.toggleOpenThread.bind(this);
         this.toggleOpenReplies = this.toggleOpenReplies.bind(this);
@@ -37,8 +37,8 @@ class Five extends Component {
         this.postReply = this.postReply.bind(this);
     }
 
-    openNewThreadModal(){
-        this.setState({showNewThreadModal: !this.state.showNewThreadModal})
+    openNewThreadArea(){
+        this.setState({showNewThreadArea: !this.state.showNewThreadArea})
     }
 
     createNewThread(){
@@ -50,7 +50,7 @@ class Five extends Component {
         })
         this.setState({
             threads: threads,
-            showNewThreadModal: false,
+            showNewThreadArea: false,
             newThreadName: '',
         })
     }
@@ -86,15 +86,17 @@ class Five extends Component {
 
     postComment(i){
         if (!this.state.username) return alert('Please enter a username before posting');
-        let {threads} = this.state;
+        let threads = this.state.threads;
+        let messageNum = threads[i].messages.length > 0 ? threads[i].messages[threads[i].messages.length-1].messageNum + 1 : 1;
         let newMessage = {
-            messageNum: threads[i].messages[threads[i].messages.length-1].messageNum + 1,
+            messageNum: messageNum,
             user: this.state.username,
             message: this.state.commentInput,
             repliesOpen: false,
             replies: []
         };
         threads[i].messages.push(newMessage);
+        threads[i].open = true;
         this.setState({
             threads: threads,
             commentInput: ''
@@ -109,6 +111,7 @@ class Five extends Component {
             message: replyInput
         }
         threads[threadIndex].messages[messageIndex].replies.push(newReply);
+        threads[threadIndex].messages[messageIndex].repliesOpen = true;
         this.setState({
             threads: threads,
             replyInput: '',
@@ -121,28 +124,33 @@ class Five extends Component {
 
                 <input placeholder='Type Your Username Here...' className='usernameInput' value={this.state.username} onChange={(e)=> this.setState({username: e.target.value})} />
 
-                { this.state.showNewThreadModal ? 
-                    <div className='newThreadModal'>
-                        <input placeholder='New Thread Name' value={this.state.newThreadName} onChange={(e) => this.setState({newThreadName: e.target.value})} />
-                        <button onClick={this.createNewThread} >Create</button>
-                    </div>
-                 : null
-                }
+                
 
                 <section className='threads'>
-                    <div className='threadName' onClick={this.openNewThreadModal} >New Thread +</div>
+
+                    <div className='newThread'>
+                        <p><span onClick={this.openNewThreadArea}>{this.state.showNewThreadArea ? '-' : '+'}</span> New Thread</p>
+                        { this.state.showNewThreadArea ? 
+                            <div className='newThreadArea'>
+                                <input placeholder='New Thread Name' value={this.state.newThreadName} onChange={(e) => this.setState({newThreadName: e.target.value})} />
+                                <button onClick={this.createNewThread} >Create</button>
+                            </div>
+                        : null
+                        }
+                    </div>
+
                     {
                         this.state.threads.map((item, i) => {
                             return <div className='thread' key={i}>
                                 <div className='threadPlus' onClick={(e) => this.toggleOpenThread(i)} >{item.open ? '-' : '+'}</div>
                                 <div className='threadName'>{item.threadName}</div>
-                                <div className='postCommentBtn' onClick={() => this.setState({showNewCommentModal: !this.state.showNewCommentModal})} >post a comment</div>
                                 {this.showThread(item, i)}
                                 <input value={this.state.commentInput} onChange={(e) => this.setState({commentInput: e.target.value})} placeholder='your comment...' className='commentInput' />
                                 <button onClick={() => this.postComment(i)}>Post</button>
                             </div>
                         })
                     }
+
                 </section>
 
             </section>
