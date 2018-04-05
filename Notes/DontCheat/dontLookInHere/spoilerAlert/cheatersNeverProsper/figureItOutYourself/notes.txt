@@ -15,4 +15,7 @@
 4th Route: hitting buttons on the onscreen keyboard doesn't do anything
     - i'm passing the wrong prop to the List component
 
+5th Route: Posting a comment/reply throws error that you must enter username before posting, even if you have a username typed in there
+    - the input to update your username on state isn't tied to state yet. need to include the value and onChage properties
 
+    

@@ -10,19 +10,26 @@ class Five extends Component {
 
         this.state = {
             username: '',
-            threads: [{
-                threadName: 'cats',
-                open: true,
-                messages: [
-                    {
-                        messageNum: 1,
-                        user: 'jack jackson',
-                        message: 'I love cats!',
-                        repliesOpen: false,
-                        replies: [{username: 'sallyQ', message: 'me too!'}]
-                    }
-                ]
-            }],
+            threads: [
+                {
+                    threadName: 'cats',
+                    open: false,
+                    messages: [
+                        {
+                            messageNum: 1,
+                            user: 'jack jackson',
+                            message: 'I love cats!',
+                            repliesOpen: false,
+                            replies: [{username: 'sallyQ', message: 'me too!'}]
+                        }
+                    ]
+                },
+                {
+                    threadName: 'My elbow',
+                    open: false,
+                    messages: []
+                }
+            ],
             showNewThreadArea: false,
             newThreadName: '',
             commentInput: '',
@@ -122,7 +129,7 @@ class Five extends Component {
         return (
             <section className='routeWrapper'>
 
-                <input placeholder='Type Your Username Here...' className='usernameInput' value={this.state.username} onChange={(e)=> this.setState({username: e.target.value})} />
+                <input placeholder='Type Your Username Here...' className='usernameInput' />
 
                 
 
