@@ -9,6 +9,7 @@ class Five extends Component {
         super(props);
 
         this.state = {
+            username: '',
             threads: [{
                 threadName: 'cats',
                 open: true,
@@ -33,6 +34,7 @@ class Five extends Component {
         this.toggleOpenReplies = this.toggleOpenReplies.bind(this);
         this.showThread = this.showThread.bind(this);
         this.postComment = this.postComment.bind(this);
+        this.postReply = this.postReply.bind(this);
     }
 
     openNewThreadModal(){
@@ -71,10 +73,11 @@ class Five extends Component {
         }else if (item.messages.length === 0){
             return <div className='reply'>This thread has no comments yet</div>
         } else {
-            return <div>
+            return <div style={{paddingLeft: '20px'}}>
+                <p>Comments:</p>
                 {
                     item.messages.map((messageObj, i) => {
-                        return <Message key={i} data={messageObj} threadIndex={threadIndex} messageIndex={i} toggleOpenReplies={this.toggleOpenReplies} />
+                        return <Message key={i} data={messageObj} threadIndex={threadIndex} messageIndex={i} toggleOpenReplies={this.toggleOpenReplies} postReply={this.postReply} />
                     })
                 }
             </div>
@@ -82,12 +85,41 @@ class Five extends Component {
     }
 
     postComment(i){
-        // post the user comment here...
+        if (!this.state.username) return alert('Please enter a username before posting');
+        let {threads} = this.state;
+        let newMessage = {
+            messageNum: threads[i].messages[threads[i].messages.length-1].messageNum + 1,
+            user: this.state.username,
+            message: this.state.commentInput,
+            repliesOpen: false,
+            replies: []
+        };
+        threads[i].messages.push(newMessage);
+        this.setState({
+            threads: threads,
+            commentInput: ''
+        });
+    }
+
+    postReply(threadIndex, messageIndex, replyInput){
+        if (!this.state.username) return alert('Please enter a username before posting');
+        let threads = this.state.threads;
+        let newReply = {
+            username: this.state.username,
+            message: replyInput
+        }
+        threads[threadIndex].messages[messageIndex].replies.push(newReply);
+        this.setState({
+            threads: threads,
+            replyInput: '',
+        })
     }
 
     render() {
         return (
             <section className='routeWrapper'>
+
+                <input placeholder='Type Your Username Here...' className='usernameInput' value={this.state.username} onChange={(e)=> this.setState({username: e.target.value})} />
 
                 { this.state.showNewThreadModal ? 
                     <div className='newThreadModal'>
@@ -106,7 +138,7 @@ class Five extends Component {
                                 <div className='threadName'>{item.threadName}</div>
                                 <div className='postCommentBtn' onClick={() => this.setState({showNewCommentModal: !this.state.showNewCommentModal})} >post a comment</div>
                                 {this.showThread(item, i)}
-                                <input value={this.state.commentInput} onChange={(e) => this.setState({commentInput: e.target.value})} placeholder='your comment...' />
+                                <input value={this.state.commentInput} onChange={(e) => this.setState({commentInput: e.target.value})} placeholder='your comment...' className='commentInput' />
                                 <button onClick={() => this.postComment(i)}>Post</button>
                             </div>
                         })
